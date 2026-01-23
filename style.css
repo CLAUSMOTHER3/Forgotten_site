@@ -1,0 +1,18 @@
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: #888088; /* (Fallback)*/
+    background: -webkit-linear-gradient(
+        to bottom,
+        #888088,
+        #221011
+    );
+    background: linear-gradient(
+        to bottom,
+        #888088,
+        #221011
+    );
+}

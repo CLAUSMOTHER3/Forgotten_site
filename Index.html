@@ -1,32 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
-  <link rel="icon" href="image/site_icon.ico">
-  <style>
-    @font-face {
-    font-family:'8BitOpperator';
-    src: url('font/PixelOperator-Bold.ttf') format('ttf');
-    }
-    body {
-    background-color: #888088; /* Gray background */
-    color: #FFFFFF; /* White font */
-    font-family: '8BitOpperator', sans-serif; /* Custom font */
-    text-align: center;
-    padding: 20px;
-    }
-</style>
-
-<h1>A PLACE INBETWEEN</h1>
+    <meta charset="utf-8">
+    <link rel="icon" href="image/site_icon.ico"> 
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <style>
+      @font-face {
+      font-family:'8BitOpperator';
+      src: url('font/PixelOperator-Bold.ttf') format('ttf');
+      }
+      body {
+      background-color: #888088; /* Gray background */
+      color: #FFFFFF; /* White font */
+      font-family: '8BitOpperator', sans-serif; /* Custom font */
+      text-align: center; 
+      padding: 20px; 
+      } 
+  </style> 
+  <title>A PLACE INBETWEEN</title>
+  <link rel="stylesheet" herf="style.css" />
 </head>
-<p>🥚<img src="image\Man_overworld_tree.gif" alt="He's behind the tree" width="212" height="182"></p>
-  
-  <p>OH, HELLO THERE!</p>
-  <a href="https://youtu.be/qBWilFobICM">BGM</a> 
-  <p>IT SEEMS YOU'VE FOUND MY REFUGE.</p>
-  <p>THIS IS A HOME FOR ALL THAT IS OBSCURED.</p>
-  <p>A PERSONAL PLACE FOR ALL THAT IS .</p>
-</body>
+<!--
+<h1>A PLACE INBETWEEN </h1> Comment 
+--> 
+  <body>
+    <p>🥚<img src="image\Man_overworld_tree.gif" alt="He's behind the tree" width="212" height="182"></p>
+      
+      <p>OH, HELLO THERE!</p>
+      <a href="https://youtu.be/qBWilFobICM">BGM</a> 
+      <p>IT SEEMS YOU'VE FOUND MY REFUGE.</p>
+      <p>THIS IS A HOME FOR ALL THAT IS OBSCURED.</p>
+      <p>A PERSONAL PLACE FOR ALL THAT IS . . .</p>
+      <p>FORGOTTEN . . . OR IGNORED BY THE GENERAL MASSES.</p>
+      <p> ... </p>
+  </body>
+  <body>
+    <a-scene>
+      <a-assets>
+        <img id= "tree" src="image\Man_overworld_tree.gif">
+      </a-assets>
 
+      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#5F2D60"></a-plane>
+      <a-plane src= "#tree" position="0 4 -5" rotation="0 0 0" scale="2 2 2" alphaTest= "true"></a-plane>
+      <a-entity geometry = "primative: box" position=" 9 0.5 -3" scale= "2 2 2" material="color: #FF1200"
+      animation__rotatin = "property: rotation; to : 0 360 0; loop: true; easing: linear; dur:4000"
+      animation__position = "property: position; to : 9 4 -3; dir: alternate; loop: true; easing: easeInOutSine; dr:2000"
+      >
+      <a-entity
+        geometry = "primative: box" position=" 2 0.5 -3" scale= "0.5 0.5 0.5" material="color: #FF1200">
+        
+      </a-entity>
 
+      </a-entity>
+      <!-- <a-sky color="#FFECEC"></a-sky>
+      https://deltarune.wiki/images/Man_overworld_tree.gif?cb=15l8og&h=thumb.php&f=Man_overworld_tree.gif 
+      -->
+    </a-scene>
+  </body>
 </html>
