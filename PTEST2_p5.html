@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.2.0/addons/p5.sound.min.js"></script>
+    <meta charset="utf-8">
+    <link rel="icon" href="image/site_icon.ico"/> 
+<style
+html, body {
+  margin: 0;
+  padding: 20;
+}
+canvas {
+  display: block;
+}
+>
+</style>
+<title>THE CIRUCS</title>
+<link rel="stylesheet" herf="style.css" />  
+</head>
+
+<script>
+// Jevil's Marry Go round
+
+let frames = 5;
+let length = 200;
+let angle = 0;
+let count = 0;
+let count2 = 0;
+let cantstop = false;
+let c1A = 60;
+let c1B = 20;
+let c1C = 100;
+let c2A = 60; 
+let c2B = 100; 
+let c2C = 20;
+let jokerMus;
+let spamMus;
+let jokerImg;
+let jokerSpe = 0.25
+function preload() {
+  soundFormats('mp3', 'ogg');
+  // imageFormats('gif');
+  jokerMus = loadSound('/sound/joker.ogg');
+  spamMus = loadSound('https://deltarune.com/assets/audio/midi-spamton-battle.mp3');
+  jokerImg = loadImage('/image/jevil.gif');
+}
+
+function setup() { 
+  let cnv = createCanvas(600, 600);
+  cnv.mousePressed(canvasPressed);
+  background(10, 5, 20);
+  stroke(0);
+  strokeWeight(60)
+  fill(200, 100, 100)
+  text('* C l i c k   h e r e   t o   R i d e.', 220, 300);
+  frameRate(0);
+}
+
+function canvasPressed() {
+  // plays the music
+  
+  let choicer = -1;
+  choicer ++;
+  if (choicer > 3){ choicer = 0}
+  switch (choicer)
+  {
+    case 2: 
+    
+      c1A = 260;
+      c1B = 250;
+      c1C = 250;
+      c2A = 60; 
+      c2B = 100; 
+      c2C = 20;
+      console.log('color 0');
+    
+    break;
+    case 1: 
+    
+      c1A = 160;
+      c1B = 150;
+      c1C = 120;
+      c2A = 60; 
+      c2B = 100; 
+      c2C = 20;
+      console.log('color 1');
+    break;
+    case 0: 
+    
+      c1A = 60;
+      c1B = 20;
+      c1C = 100;
+      c2A = 60; 
+      c2B = 100; 
+      c2C = 20;
+      console.log('color 2');
+    break;
+  }
+  if (cantstop === false)
+  {
+    background(10, 5, 20);
+    jokerMus.loop();
+    jokerMus.rate(jokerSpe);
+    jokerMus.setVolume(0.01);
+    strokeWeight(1)
+    frameRate(1);
+    
+    cantstop = true;
+  }
+  
+}
+
+function draw() {
+  image(jokerImg, width/2 -45, width/2 -60);
+  let x = length * sin(angle);
+  let y = length * cos(angle);
+  translate(width/2, height/2);
+  if ( count % 2 === 0)
+    {stroke(c1A, c1B, c1C);}
+  else {stroke(c2A, c2B, c2C);}
+  line(0, 0, x, y);
+  angle += -0.5;
+  count += 1;
+  jokerSpe += 0.0001;
+   frames*= 1.005;
+   frameRate(frames);
+   jokerMus.rate(jokerSpe);
+  
+   if (count >= 1000)
+   count2 += 0.001
+   {background(count2, 5, 20, (count *0.001));}
+   
+}
+
+</script>
+
+  </head>
+  <body>
+    <p> LET'S RIDE THE MARRY GO ROUND.</p>
+  </body>
+</html>
