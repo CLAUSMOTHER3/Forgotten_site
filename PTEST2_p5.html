@@ -44,6 +44,7 @@ function preload() {
   jokerMus = loadSound('/sound/joker.ogg');
   spamMus = loadSound('https://deltarune.com/assets/audio/midi-spamton-battle.mp3');
   jokerImg = loadImage('/image/jevil.gif');
+  // jokerImg2 = loadImage('/image/jevil_sheet.png');
 }
 
 function setup() { 
@@ -102,7 +103,7 @@ function canvasPressed() {
     background(10, 5, 20);
     jokerMus.loop();
     jokerMus.rate(jokerSpe);
-    jokerMus.setVolume(0.01);
+    jokerMus.setVolume(0.1);
     strokeWeight(1)
     frameRate(1);
     
@@ -113,6 +114,7 @@ function canvasPressed() {
 
 function draw() {
   image(jokerImg, width/2 -45, width/2 -60);
+  millis(4.2)
   let x = length * sin(angle);
   let y = length * cos(angle);
   translate(width/2, height/2);
@@ -127,9 +129,9 @@ function draw() {
    frameRate(frames);
    jokerMus.rate(jokerSpe);
   
-   if (count >= 1000)
-   count2 += 0.001
-   {background(count2, 5, 20, (count *0.001));}
+   if (count >= 5000)
+   count2 += 0.0001
+   {background(count2, .5, .20, (count *0.0001));}
    
 }
 
