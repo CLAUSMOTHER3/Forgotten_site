@@ -36,10 +36,10 @@ function preload() {
 function setup() {
   let cnv = createCanvas(600, 600);
   cnv.mousePressed(canvasPressed);
-  player = new Player(width/2, height/2);
-  obstacle = new Obstacle(width/2, height/2+30);
+  player = new Player(width/2 -13, height/2 -75);
+  obstacle = new Obstacle(width/2, 200);
 }
-
+// add a spawn point
 function canvasPressed() {
 
   if (cantstop === false)
@@ -154,7 +154,7 @@ class Obstacle {
   }
   
   update() {
-    this.y = 5 * sin(frameCount * this.speed) + this.y;
+    this.y = 3 * sin(frameCount * this.speed) + this.y;
 
      // borders
     if(this.x < 0){
