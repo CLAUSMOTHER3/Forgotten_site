@@ -15,32 +15,177 @@ canvas {
 }
 >
 </style>
-<title>THE WITNESS</title>
+<title>THE WORLDS HARDEST GAME</title>
 <link rel="stylesheet" herf="style.css" />  
 </head>
 
 <script>
+// START ==========================================================================================
 // Test your eyes
-let col1 = 255
-let col2 = 255
-let col3 = 255
-let jokerSpe = 0.25
 
 
-function setup() { 
+let pressedKeys = {};
+let mus_hard;
+let cantstop = false;
+function preload() {
+  soundFormats('mp3', 'ogg');
+  // imageFormats('gif');
+  mus_hard = loadSound('/sound/itshard.ogg');
+}
+
+function setup() {
   let cnv = createCanvas(600, 600);
-  background(128)
-  frameRate(60);
+  cnv.mousePressed(canvasPressed);
+  player = new Player(width/2, height/2);
+  obstacle = new Obstacle(width/2, height/2+30);
+}
+
+function canvasPressed() {
+
+  if (cantstop === false)
+  {
+    background(10, 5, 20);
+    mus_hard.loop();
+    mus_hard.setVolume(1.0);
+    frameRate(60);
+    
+    cantstop = true;
+  }
 }
 
 function draw() {
+  background(224, 220, 255);
+  //checkerboard
+  fill(248, 248, 255);
+  stroke(0);
+  strokeWeight(0);
+  for (var x = 40; x <=width; x += 80){
+    for (var y = 40;  y <= height; y+=80){
+      rect(x, y, 40, 40);
+    }
+  }
+  for (var x = 0; x <= width; x += 80){
+    for (var y = 0;  y <= height; y += 80){
+      rect(x, y, 40, 40);
+    }
+  }
 
+  // UI
+  fill(20, 0, 60)
+  stroke(20,0, 180);
+  strokeWeight(1);
+  rect(0, height-80, 600, 80);
+  
+
+  // movement
+  player.update();
+  player.draw();
+  obstacle.draw();
+  obstacle.update();
 }
 
+function keyPressed() {
+  pressedKeys[key] = true;
+}
+
+function keyReleased() {
+  delete pressedKeys[key];
+}
+
+class Player {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.scale = 25
+    this.speed = 3;
+  }
+  
+  update() {
+    let mvmt = createVector(0, 0);
+    
+    if(pressedKeys.a) {
+      mvmt.x -= 1;
+    }
+    if(pressedKeys.d) {
+      mvmt.x += 1;
+    }
+    if(pressedKeys.w) {
+      mvmt.y -= 1;
+    }
+    if(pressedKeys.s) {
+      mvmt.y += 1;
+    }
+    
+    mvmt.setMag(this.speed);
+    
+    // borders
+    if(this.x < 0){
+      this.x = this.x + this.speed*1.05;
+    }
+    if(this.x > width - this.scale){
+      this.x = this.x - this.speed*1.05;
+    }
+
+    if(this.y < 0){
+      this.y = this.y + this.speed*1.05;
+    }
+    if(this.y > height - this.scale -80){
+      this.y = this.y - this.speed*1.05;
+    }
+
+    this.x += mvmt.x;
+    this.y += mvmt.y;
+  }
+  
+  draw() {
+    stroke(120, 0, 0);
+    strokeWeight(5)
+    fill(255, 0, 0);
+    rect(this.x, this.y, this.scale);
+  }
+}
+// OBSTACLE  CLASS --------------------------------
+class Obstacle {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.scale = 15;
+    this.speed = 0.05;
+  }
+  
+  update() {
+    this.y = 5 * sin(frameCount * this.speed) + this.y;
+
+     // borders
+    if(this.x < 0){
+      this.x = this.x + this.speed*1.05;
+    }
+    if(this.x > width - this.scale){
+      this.x = this.x - this.speed*1.05;
+    }
+
+    if(this.y < 0){
+      this.y = this.y + this.speed*1.05;
+    }
+    if(this.y > height - this.scale){
+      this.y = this.y - this.speed*1.05;
+    }
+  }
+  
+  draw() {
+    stroke(0, 0, 120);
+    strokeWeight(5)
+    fill(0, 0, 255);
+    circle(this.x, this.y, this.scale);
+  }
+}
+
+
+// END ==========================================================================================
 </script>
 
   </head>
   <body>
-    <p> LET US TEST YOUR EYES.</p>
+    <p> THE WORLDS HARDEST.</p>
   </body>
 </html>
