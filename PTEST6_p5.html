@@ -70,18 +70,18 @@ function draw() {
     }
   }
 
-  // UI
-  fill(20, 0, 60)
-  stroke(20,0, 180);
-  strokeWeight(1);
-  rect(0, height-80, 600, 80);
   
-
   // movement
   player.update();
   player.draw();
   obstacle.draw();
   obstacle.update();
+
+  // UI
+  fill(20, 0, 60)
+  stroke(20,0, 180);
+  strokeWeight(5);
+  rect(0, height-80, 600, 80);
 }
 
 function keyPressed() {
@@ -103,16 +103,16 @@ class Player {
   update() {
     let mvmt = createVector(0, 0);
     
-    if(pressedKeys.a) {
+    if (keyIsDown(LEFT_ARROW) || keyIsDown(65)) {
       mvmt.x -= 1;
     }
-    if(pressedKeys.d) {
+    if (keyIsDown(RIGHT_ARROW) || keyIsDown(68)) {
       mvmt.x += 1;
     }
-    if(pressedKeys.w) {
+    if (keyIsDown(UP_ARROW) || keyIsDown(87)) {
       mvmt.y -= 1;
     }
-    if(pressedKeys.s) {
+    if (keyIsDown(DOWN_ARROW) || keyIsDown(83)) {
       mvmt.y += 1;
     }
     
