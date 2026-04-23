@@ -70,13 +70,13 @@ function draw() {
     }
   }
 
-  
   // movement
   player.update();
   player.draw();
   obstacle.draw();
   obstacle.update();
 
+  
   // UI
   fill(20, 0, 60)
   stroke(20,0, 180);
@@ -93,10 +93,12 @@ function keyReleased() {
 }
 
 class Player {
-  constructor(x, y) {
+  constructor(x, y, w, h) {
     this.x = x;
     this.y = y;
-    this.scale = 25
+    this.scale = 25;
+    this.w = this.scale;
+    this.h = this.scale;
     this.speed = 3;
   }
   
@@ -141,15 +143,17 @@ class Player {
     stroke(120, 0, 0);
     strokeWeight(5)
     fill(255, 0, 0);
-    rect(this.x, this.y, this.scale);
+    rect(this.x, this.y, this.w, this.h);
   }
 }
 // OBSTACLE  CLASS --------------------------------
 class Obstacle {
-  constructor(x, y) {
+  constructor(x, y, w, h) {
     this.x = x;
     this.y = y;
     this.scale = 15;
+    this.w = this.scale;
+    this.h = this.scale;
     this.speed = 0.05;
   }
   
@@ -176,7 +180,7 @@ class Obstacle {
     stroke(0, 0, 120);
     strokeWeight(5)
     fill(0, 0, 255);
-    circle(this.x, this.y, this.scale);
+    circle(this.x, this.y, this.w, this.h);
   }
 }
 
